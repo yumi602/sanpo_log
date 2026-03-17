@@ -1,0 +1,23 @@
+<header class="sticky top-0 z-10 border-b border-base-300 bg-base-100">
+  <div class="navbar min-h-16 px-4">
+    <!-- 左：アプリ名 -->
+    <div class="flex-1">
+      <%= link_to root_path, class: "text-lg font-bold" do %>
+        おさんぽ日記
+      <% end %>
+    </div>
+
+    <!-- 右：ナビ -->
+    <div class="flex-none">
+      <div class="flex items-center gap-2">
+        <%= link_to "#", class: "btn btn-ghost btn-sm" do %>
+          ログイン
+        <% end %>
+
+        <%= link_to "#", class: "btn btn-primary btn-sm" do %>
+          新規登録
+        <% end %>
+      </div>
+    </div>
+  </div>
+</header>
