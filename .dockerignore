@@ -7,8 +7,14 @@ tmp/*
 node_modules
 vendor/bundle
 
+.env
+
 docker-compose.yml
 Dockerfile*
 .dockerignore
 
 .DS_Store
+
+coverage
+spec
+test
