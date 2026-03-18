@@ -8,8 +8,14 @@
 /spec/examples.txt
 /test/tmp/
 /test/version_tmp/
-/tmp/
+/tmp/*
+!/tmp/.keep
 
+/log/*
+!/log/.keep
+
+.env
+.DS_Store
 # Used by dotenv library to load environment variables.
 # .env
 
