@@ -1,6 +1,10 @@
 class WalkRecordsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @walk_records = current_user.walk_records.order(walked_on: :desc, created_at: :desc)
+  end
+
   def new
     @walk_record = WalkRecord.new
   end
@@ -9,7 +13,7 @@ class WalkRecordsController < ApplicationController
     @walk_record = current_user.walk_records.build(walk_record_params)
 
     if @walk_record.save
-      redirect_to root_path, notice: "散歩記録を投稿しました"
+      redirect_to walk_records_path, notice: "散歩記録を投稿しました"
     else
       flash.now[:alert] = "散歩記録を投稿できませんでした"
       render :new, status: :unprocessable_entity
