@@ -24,6 +24,21 @@ class WalkRecordsController < ApplicationController
     @walk_record = current_user.walk_records.find(params[:id])
   end
 
+  def edit
+    @walk_record = current_user.walk_records.find(params[:id])
+  end
+
+  def update
+    @walk_record = current_user.walk_records.find(params[:id])
+
+    if @walk_record.update(walk_record_params)
+      redirect_to walk_record_path(@walk_record), notice: "散歩記録を更新しました"
+    else
+      flash.now[:alert] = "散歩記録を更新できませんでした"
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def walk_record_params

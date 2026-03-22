@@ -22,6 +22,10 @@
           <p class="text-sm text-base-content/70">ひとことメモ</p>
           <p class="mt-1 whitespace-pre-wrap leading-relaxed"><%= @walk_record.body %></p>
         </div>
+
+        <div class="pt-2">
+          <%= link_to "編集する", edit_walk_record_path(@walk_record), class: "btn btn-primary w-full" %>
+        </div>
       </div>
     </div>
   </div>
