@@ -20,6 +20,10 @@ class WalkRecordsController < ApplicationController
     end
   end
 
+  def show
+    @walk_record = current_user.walk_records.find(params[:id])
+  end
+
   private
 
   def walk_record_params
