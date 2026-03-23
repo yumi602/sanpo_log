@@ -17,12 +17,14 @@
             ログアウト
           <% end %>
         <% else %>
-          <%= link_to new_user_session_path, class: "btn btn-ghost btn-sm" do %>
-            ログイン
-          <% end %>
+          <% unless current_page?(root_path) %>
+            <%= link_to new_user_session_path, class: "btn btn-ghost btn-sm" do %>
+              ログイン
+            <% end %>
 
-          <%= link_to new_user_registration_path, class: "btn btn-primary btn-sm" do %>
-            新規登録
+            <%= link_to new_user_registration_path, class: "btn btn-primary btn-sm" do %>
+              新規登録
+            <% end %>
           <% end %>
         <% end %>
       </div>

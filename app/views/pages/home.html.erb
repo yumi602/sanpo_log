@@ -1,15 +1,53 @@
-<div class="space-y-4">
-  <section class="rounded-2xl bg-base-100 p-6 shadow-sm">
-    <h1 class="text-2xl font-bold leading-tight">
-      ようこそ
-    </h1>
-    <p class="mt-3 text-sm leading-6 text-base-content/80">
-      ここは Application Layout 確認用のトップページです。
-    </p>
-    <div class="mt-5">
-      <button class="btn btn-primary btn-block">
-        確認用ボタン
-      </button>
+<div class="min-h-screen bg-base-200 px-4 py-8">
+  <div class="mx-auto flex w-full max-w-4xl flex-col gap-8">
+    <div class="hero rounded-3xl bg-base-100 shadow-md">
+      <div class="hero-content w-full px-6 py-12 text-center">
+        <div class="max-w-2xl">
+          <h1 class="text-4xl font-bold leading-tight">おさんぽ日記</h1>
+          <p class="mt-4 text-lg text-base-content/70">
+            毎日の散歩を、気分とひとことメモでやさしく記録できるアプリです。
+          </p>
+
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <% if user_signed_in? %>
+              <%= link_to "散歩記録を見る", walk_records_path, class: "btn btn-primary" %>
+              <%= link_to "新しく記録する", new_walk_record_path, class: "btn btn-outline" %>
+            <% else %>
+              <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline" %>
+              <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+
+    <div class="grid gap-4 sm:grid-cols-3">
+      <div class="card bg-base-100 shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title text-lg">記録する</h2>
+          <p class="text-sm text-base-content/70">
+            散歩した日・気分・ひとことメモを簡単に残せます。
+          </p>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title text-lg">ふりかえる</h2>
+          <p class="text-sm text-base-content/70">
+            一覧画面から、これまでの散歩記録を見返せます。
+          </p>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title text-lg">続けやすい</h2>
+          <p class="text-sm text-base-content/70">
+            シンプルな入力画面で、毎日の記録を続けやすくします。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
