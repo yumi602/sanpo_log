@@ -39,6 +39,13 @@ class WalkRecordsController < ApplicationController
     end
   end
 
+  def destroy
+    @walk_record = current_user.walk_records.find(params[:id])
+    @walk_record.destroy
+
+    redirect_to walk_records_path, notice: "散歩記録を削除しました"
+  end
+
   private
 
   def walk_record_params

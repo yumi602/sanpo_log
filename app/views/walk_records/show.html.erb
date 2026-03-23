@@ -23,8 +23,11 @@
           <p class="mt-1 whitespace-pre-wrap leading-relaxed"><%= @walk_record.body %></p>
         </div>
 
-        <div class="pt-2">
+        <div class="pt-2 space-y-2">
           <%= link_to "編集する", edit_walk_record_path(@walk_record), class: "btn btn-primary w-full" %>
+          <%= link_to "削除する",
+              walk_record_path(@walk_record),
+              data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-error w-full" %>
         </div>
       </div>
     </div>
