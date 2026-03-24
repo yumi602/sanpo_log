@@ -7,6 +7,9 @@
       </p>
     </div>
 
+    <div class="mb-4">
+      <%= link_to "← 一覧に戻る", walk_records_path, class: "btn btn-ghost btn-sm" %>
+    </div>
     <% if @walk_record.errors.any? %>
       <div class="alert alert-error mb-4 shadow-sm">
         <div>
