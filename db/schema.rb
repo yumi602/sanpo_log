@@ -10,9 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_19_102338) do
+ActiveRecord::Schema[7.2].define(version: 2026_03_30_104540) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "challenges", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "theme_id", null: false
+    t.integer "progress_count", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.date "started_on", null: false
+    t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["theme_id"], name: "index_challenges_on_theme_id"
+    t.index ["user_id"], name: "index_challenges_on_user_id"
+  end
+
+  create_table "themes", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "image_path"
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,5 +59,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_19_102338) do
     t.index ["user_id"], name: "index_walk_records_on_user_id"
   end
 
+  add_foreign_key "challenges", "themes"
+  add_foreign_key "challenges", "users"
   add_foreign_key "walk_records", "users"
 end
