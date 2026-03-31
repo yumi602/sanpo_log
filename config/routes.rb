@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root "pages#home"
 
   resources :walk_records, only: %i[new create index show edit update destroy]
+
+  resource :challenge, only: %i[new create show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
