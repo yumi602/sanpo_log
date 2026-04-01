@@ -1,5 +1,17 @@
 <div class="min-h-screen bg-base-200 px-4 py-6">
   <div class="mx-auto w-full max-w-md">
+
+    <% if @current_challenge.present? %>
+      <div class="mb-6">
+        <p class="mb-2">今の進捗: <%= @current_challenge.progress_count %> / 7</p>
+        <%= link_to "チャレンジ詳細を見る", challenge_path, class: "btn btn-primary" %>
+      </div>
+    <% else %>
+      <div class="mb-6">
+        <%= link_to "桜の7日間チャレンジを始める", new_challenge_path, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
     <div class="mb-6 flex items-center justify-between">
       <div>
         <h1 class="text-2xl font-bold">散歩記録一覧</h1>

@@ -3,6 +3,7 @@ class WalkRecordsController < ApplicationController
 
   def index
     @walk_records = current_user.walk_records.order(walked_on: :desc, created_at: :desc)
+    @current_challenge = current_user.challenges.find_by(status: :in_progress)
   end
 
   def new
