@@ -1,0 +1,22 @@
+<div class="max-w-2xl mx-auto p-6">
+  <h1 class="text-2xl font-bold mb-4">7日間チャレンジ</h1>
+
+  <div class="card bg-base-100 shadow-md">
+    <div class="card-body">
+      <h2 class="card-title"><%= @theme.name %>テーマ</h2>
+
+      <p class="mb-4">
+        <%= @theme.description %>
+      </p>
+
+      <p class="mb-6">
+        散歩記録を7回投稿すると、テーマボードが完成します。
+      </p>
+
+      <div class="flex gap-3">
+        <%= button_to "7日間チャレンジスタート", challenge_path, method: :post, class: "btn btn-primary" %>
+        <%= link_to "一覧へ戻る", walk_records_path, class: "btn btn-outline" %>
+      </div>
+    </div>
+  </div>
+</div>

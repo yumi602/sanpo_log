@@ -1,0 +1,37 @@
+<div class="max-w-2xl mx-auto p-6">
+  <h1 class="text-2xl font-bold mb-4">チャレンジ詳細</h1>
+
+  <div class="card bg-base-100 shadow-md mb-6">
+    <div class="card-body">
+      <h2 class="card-title"><%= @challenge.theme.name %>テーマ</h2>
+
+      <p class="mb-2">
+        進捗: <%= @challenge.progress_count %> / 7
+      </p>
+
+      <p class="mb-4">
+        開始日: <%= @challenge.started_on %>
+      </p>
+
+      <div class="flex gap-2 text-2xl mb-4">
+        <% 7.times do |i| %>
+          <% if i < @challenge.progress_count %>
+            <span>🌸</span>
+          <% else %>
+            <span>□</span>
+          <% end %>
+        <% end %>
+      </div>
+
+      <% if @challenge.completed? %>
+        <p class="text-success font-bold">おめでとうございます！チャレンジ達成です！</p>
+      <% else %>
+        <p>あと <%= 7 - @challenge.progress_count %> 回で完成です。</p>
+      <% end %>
+
+      <div class="mt-6">
+        <%= link_to "一覧へ戻る", walk_records_path, class: "btn btn-outline" %>
+      </div>
+    </div>
+  </div>
+</div>
