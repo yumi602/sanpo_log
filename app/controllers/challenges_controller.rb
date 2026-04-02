@@ -25,13 +25,13 @@ class ChallengesController < ApplicationController
 
   def show
     @challenge = current_user.challenges
-                            .where(status: [:in_progress, :completed])
+                            .where(status: [ :in_progress, :completed ])
                             .order(created_at: :desc)
                             .first
 
     if @challenge.nil?
       redirect_to new_challenge_path, alert: "チャレンジがありません"
-      return
+      nil
     end
   end
 end
