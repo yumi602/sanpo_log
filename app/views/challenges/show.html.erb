@@ -15,7 +15,7 @@
 
       <div class="flex gap-2 text-2xl mb-4">
         <% 7.times do |i| %>
-          <% if i < @challenge.progress_count %>
+          <% if @challenge.completed? || i < @challenge.progress_count %>
             <span>🌸</span>
           <% else %>
             <span>□</span>
@@ -24,7 +24,9 @@
       </div>
 
       <% if @challenge.completed? %>
-        <p class="text-success font-bold">おめでとうございます！チャレンジ達成です！</p>
+        <div class="alert alert-success mb-4">
+          <span>達成しました！桜ボード完成です🌸</span>
+        </div>
       <% else %>
         <p>あと <%= 7 - @challenge.progress_count %> 回で完成です。</p>
       <% end %>
