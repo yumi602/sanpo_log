@@ -4,6 +4,9 @@ class WalkRecordsController < ApplicationController
   def index
     @walk_records = current_user.walk_records.order(walked_on: :desc, created_at: :desc)
     @current_challenge = current_user.challenges.find_by(status: :in_progress)
+    @completed_challenge = if @current_challenge.nil?
+                            current_user.challenges.where(status: :completed).order(completed_at: :desc).first
+    end
   end
 
   def new
