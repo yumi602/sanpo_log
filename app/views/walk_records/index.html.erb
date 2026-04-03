@@ -1,16 +1,51 @@
 <div class="min-h-screen bg-base-200 px-4 py-6">
   <div class="mx-auto w-full max-w-md">
 
-    <% if @current_challenge.present? %>
-      <div class="mb-6">
-        <p class="mb-2">今の進捗: <%= @current_challenge.progress_count %> / 7</p>
-        <%= link_to "チャレンジ詳細を見る", challenge_path, class: "btn btn-primary" %>
-      </div>
-    <% else %>
-      <div class="mb-6">
-        <%= link_to "桜の7日間チャレンジを始める", new_challenge_path, class: "btn btn-primary" %>
-      </div>
-    <% end %>
+    <div class="mb-6">
+      <% if @current_challenge.present? %>
+        <div class="card bg-base-100 shadow-md border border-primary">
+          <div class="card-body">
+            <span class="badge badge-primary w-fit">進行中</span>
+
+            <p class="mt-2 text-lg font-semibold">
+              今の進捗: <%= @current_challenge.progress_count %> / 7
+            </p>
+
+            <div class="card-actions justify-end mt-2">
+              <%= link_to "チャレンジ詳細を見る", challenge_path(@current_challenge), class: "btn btn-outline btn-primary btn-sm" %>
+            </div>
+          </div>
+        </div>
+
+      <% elsif @completed_challenge.present? %>
+        <div class="card bg-base-100 shadow-md border border-success">
+          <div class="card-body">
+            <span class="badge badge-success w-fit">達成済み</span>
+
+            <p class="mt-2 text-lg font-semibold">
+              🎉 チャレンジ達成しました！
+            </p>
+
+            <div class="card-actions justify-end mt-2">
+              <%= link_to "次のチャレンジを始める", new_challenge_path, class: "btn btn-success btn-sm" %>
+            </div>
+          </div>
+        </div>
+
+      <% else %>
+        <div class="card bg-base-100 shadow-md">
+          <div class="card-body">
+            <p class="text-base-content/70">
+              まだチャレンジを開始していません
+            </p>
+
+            <div class="card-actions justify-end mt-2">
+              <%= link_to "桜の7日間チャレンジを始める", new_challenge_path, class: "btn btn-primary btn-sm" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
     <div class="mb-6 flex items-center justify-between">
       <div>
