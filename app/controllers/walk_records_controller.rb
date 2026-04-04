@@ -7,6 +7,8 @@ class WalkRecordsController < ApplicationController
     @completed_challenge = if @current_challenge.nil?
                             current_user.challenges.where(status: :completed).order(completed_at: :desc).first
     end
+
+    @completed_challenges_count = current_user.challenges.completed.count
   end
 
   def new
