@@ -34,4 +34,10 @@ class ChallengesController < ApplicationController
       nil
     end
   end
+
+  def history
+    @completed_challenges = current_user.challenges
+                                        .where(status: :completed)
+                                        .order(completed_at: :desc)
+  end
 end
