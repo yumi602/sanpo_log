@@ -24,8 +24,12 @@
       </div>
 
       <% if @challenge.completed? %>
-        <div class="alert alert-success mb-4">
-          <span>達成しました！桜ボード完成です🌸</span>
+        <div class="mt-6 text-center">
+          <p class="mb-2 text-lg font-semibold text-success">
+            🌸 桜が満開になりました！
+          </p>
+
+          <%= image_tag "sakura.png", class: "mx-auto w-138 rounded-xl shadow-lg" %>
         </div>
       <% else %>
         <p>あと <%= 7 - @challenge.progress_count %> 回で完成です。</p>
