@@ -35,6 +35,50 @@
         <p>あと <%= 7 - @challenge.progress_count %> 回で完成です。</p>
       <% end %>
 
+      <% unless @challenge.completed? %>
+        <% puzzle_images = [
+          "puzzle_1.png",
+          "puzzle_2.png",
+          "puzzle_3.png",
+          "puzzle_4.png",
+          "puzzle_5.png",
+          "puzzle_6.png",
+          "puzzle_7.png"
+        ] %>
+
+        <% achieved_count = @challenge.progress_count %>
+
+        <div class="space-y-2 mt-4">
+          <div class="grid grid-cols-4 gap-2">
+            <% puzzle_images.first(4).each_with_index do |image_name, index| %>
+              <div class="aspect-square overflow-hidden rounded border border-base-300 bg-base-200">
+                <% if index < achieved_count %>
+                  <%= image_tag image_name, class: "h-full w-full object-cover" %>
+                <% else %>
+                  <div class="flex h-full items-center justify-center text-3xl text-gray-400">
+                    ?
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2">
+            <% puzzle_images.last(3).each_with_index do |image_name, index| %>
+              <div class="aspect-square overflow-hidden rounded border border-base-300 bg-base-200">
+                <% if (index + 4) < achieved_count %>
+                  <%= image_tag image_name, class: "h-full w-full object-cover" %>
+                <% else %>
+                  <div class="flex h-full items-center justify-center text-3xl text-gray-400">
+                    ?
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
       <div class="mt-6">
         <%= link_to "一覧へ戻る", walk_records_path, class: "btn btn-outline" %>
       </div>
