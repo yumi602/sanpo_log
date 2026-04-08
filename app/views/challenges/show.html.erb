@@ -23,28 +23,26 @@
         <% end %>
       </div>
 
+      <% image_key = @challenge.theme.key %>
+
+      <% complete_image = "puzzles/#{image_key}/#{image_key}.png" %>
+
       <% if @challenge.completed? %>
         <div class="mt-6 text-center">
           <p class="mb-2 text-lg font-semibold text-success">
-            🌸 桜が満開になりました！
+            🎉 <%= @challenge.theme.name %>が完成しました！
           </p>
 
-          <%= image_tag "sakura.png", class: "mx-auto w-138 rounded-xl shadow-lg" %>
+          <%= image_tag complete_image, class: "mx-auto w-120 rounded-lg" %>
         </div>
       <% else %>
         <p>あと <%= 7 - @challenge.progress_count %> 回で完成です。</p>
       <% end %>
 
       <% unless @challenge.completed? %>
-        <% puzzle_images = [
-          "puzzle_1.png",
-          "puzzle_2.png",
-          "puzzle_3.png",
-          "puzzle_4.png",
-          "puzzle_5.png",
-          "puzzle_6.png",
-          "puzzle_7.png"
-        ] %>
+
+        <%# ===== パズル画像を動的生成 ===== %>
+        <% puzzle_images = (1..7).map { |i| "puzzles/#{image_key}/#{image_key}_#{i}.png" } %>
 
         <% achieved_count = @challenge.progress_count %>
 
