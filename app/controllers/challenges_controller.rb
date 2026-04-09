@@ -2,7 +2,7 @@ class ChallengesController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @theme = Theme.find_by!(name: "桜")
+    @themes = Theme.where(active: true).order(:id)
   end
 
   def create
@@ -12,7 +12,8 @@ class ChallengesController < ApplicationController
       return
     end
 
-    theme = Theme.find_by!(name: "桜")
+    theme = Theme.find(params[:theme_id])
+
     current_user.challenges.create!(
       theme: theme,
       progress_count: 0,

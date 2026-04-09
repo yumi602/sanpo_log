@@ -16,7 +16,7 @@
       <div class="flex gap-2 text-2xl mb-4">
         <% 7.times do |i| %>
           <% if @challenge.completed? || i < @challenge.progress_count %>
-            <span>🌸</span>
+            <span><%= @challenge.theme.progress_icon %></span>
           <% else %>
             <span>□</span>
           <% end %>
@@ -30,7 +30,7 @@
       <% if @challenge.completed? %>
         <div class="mt-6 text-center">
           <p class="mb-2 text-lg font-semibold text-success">
-            🎉 <%= @challenge.theme.name %>が完成しました！
+              <%= @challenge.theme.completion_message %>
           </p>
 
           <%= image_tag complete_image, class: "mx-auto w-120 rounded-lg" %>

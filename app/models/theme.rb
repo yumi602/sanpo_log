@@ -3,20 +3,41 @@ class Theme < ApplicationRecord
 
   validates :name, presence: true
 
-  def image_key
-    case name
-    when "桜"
-      "sakura"
-    when "紅葉"
-      "momiji"
-    when "海"
-      "sea"
-    when "カフェ"
-      "coffee"
-    when "猫"
-      "cat"
-    when "犬"
-      "dog"
+  def progress_icon
+    case key
+    when "sakura"
+      "🌸"
+    when "dog"
+      "🐶"
+    when "cat"
+      "🐱"
+    when "sea"
+      "🌊"
+    when "coffee"
+      "☕"
+    when "momiji"
+      "🍁"
+    else
+      "✨"
+    end
+  end
+
+  def completion_message
+    case key
+    when "sakura"
+      "🌸 桜の風景が完成しました！"
+    when "dog"
+      "🐶 わんちゃんの風景が完成しました！"
+    when "cat"
+      "🐱 ねこの風景が完成しました！"
+    when "sea"
+      "🌊 海の風景が完成しました！"
+    when "coffee"
+      "☕ カフェの風景が完成しました！"
+    when "momiji"
+      "🍁 紅葉の風景が完成しました！"
+    else
+      "🎉 テーマ画像が完成しました！"
     end
   end
 end

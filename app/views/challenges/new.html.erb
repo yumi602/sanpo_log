@@ -3,20 +3,53 @@
 
   <div class="card bg-base-100 shadow-md">
     <div class="card-body">
-      <h2 class="card-title"><%= @theme.name %>テーマ</h2>
-
       <p class="mb-4">
-        <%= @theme.description %>
+        好きなテーマを選んでチャレンジを始めましょう。
       </p>
 
       <p class="mb-6">
         散歩記録を7回投稿すると、テーマボードが完成します。
       </p>
 
-      <div class="flex gap-3">
-        <%= button_to "7日間チャレンジスタート", challenge_path, method: :post, class: "btn btn-primary" %>
-        <%= link_to "一覧へ戻る", walk_records_path, class: "btn btn-outline" %>
-      </div>
+      <%= form_with url: challenge_path, method: :post, local: true do |f| %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <% @themes.each do |theme| %>
+            <label class="cursor-pointer">
+              <input
+                type="radio"
+                name="theme_id"
+                value="<%= theme.id %>"
+                class="hidden peer"
+                <%= "checked" if theme == @themes.first %>
+              >
+
+              <div class="border rounded-lg p-4 transition-all duration-200 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:shadow-lg peer-checked:scale-105">
+                <% if theme.image_path.present? %>
+                  <div class="mb-3">
+                    <%= image_tag theme.image_path, class: "w-full h-32 object-cover rounded-md" %>
+                  </div>
+                <% end %>
+
+                <h2 class="font-bold flex items-center gap-2">
+                  <span class="text-2xl"><%= theme.progress_icon %></span>
+                  <span><%= theme.name %>テーマ</span>
+                </h2>
+
+                <% if theme.description.present? %>
+                  <p class="text-sm text-gray-600">
+                    <%= theme.description %>
+                  </p>
+                <% end %>
+              </div>
+            </label>
+          <% end %>
+        </div>
+
+        <div class="flex gap-3">
+          <%= f.submit "7日間チャレンジスタート", class: "btn btn-primary" %>
+          <%= link_to "一覧へ戻る", walk_records_path, class: "btn btn-outline" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
