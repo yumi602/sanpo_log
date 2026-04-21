@@ -11,6 +11,6 @@ class CreateWeeklyReflections < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :weekly_reflections, [:user_id, :start_date, :end_date], unique: true
+    add_index :weekly_reflections, [ :user_id, :start_date, :end_date ], unique: true
   end
 end
