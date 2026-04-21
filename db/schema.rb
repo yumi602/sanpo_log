@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_04_08_111353) do
+ActiveRecord::Schema[7.2].define(version: 2026_04_21_102949) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,7 +60,21 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_08_111353) do
     t.index ["user_id"], name: "index_walk_records_on_user_id"
   end
 
+  create_table "weekly_reflections", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.text "summary"
+    t.text "analysis"
+    t.text "encouragement"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "start_date", "end_date"], name: "idx_on_user_id_start_date_end_date_464d9844e4", unique: true
+    t.index ["user_id"], name: "index_weekly_reflections_on_user_id"
+  end
+
   add_foreign_key "challenges", "themes"
   add_foreign_key "challenges", "users"
   add_foreign_key "walk_records", "users"
+  add_foreign_key "weekly_reflections", "users"
 end
